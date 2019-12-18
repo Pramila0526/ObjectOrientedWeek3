@@ -1,0 +1,152 @@
+package com.bridgelabz.addressbook.controller;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
+
+import com.bridgelabz.addressbook.model.Address;
+import com.bridgelabz.addressbook.model.AddressBookModel;
+import com.bridgelabz.addressbook.model.Person;
+import com.bridgelabz.addressbook.repository.JsonUtil;
+import com.bridgelabz.addressbook.util.Utility2;
+
+
+public class AddressBookReadWrite {
+
+	public static void main(String[] args) throws JsonParseException, JsonMappingException, IOException {
+		AddressBookModel model = new AddressBookModel();
+
+		String path = "/home/admin94/Desktop/ObjectOrientedPrograms/AddressBook/AddressBook.json";
+
+		ArrayList<Person> persons = new ArrayList<Person>();
+
+		// adding person
+		System.out.println("Enter the Number of Persons You want to Add");
+		int numberOfPersons=Utility2.integerInput();
+		
+		for(int i=0;i<numberOfPersons;i++)
+		{
+		
+		Person p1 = new Person();  //Object Of Person
+       
+		System.out.println("Enter Person Id");
+		int id=Utility2.integerInput();
+		p1.setPersonId(id);
+		
+		System.out.println("Enter Persons First Name");
+		String firstName=Utility2.stringInput();
+		p1.setFirstName(firstName);
+		
+		System.out.println("Enter Persons Last Name");
+		String lastName=Utility2.stringInput();
+		p1.setLastName(lastName);
+
+		Address ad1 = new Address(); //Object Of Address
+		System.out.println("Address--");
+		System.out.println("Enter Persons City");
+		String city=Utility2.stringInput();
+		ad1.setCity(city);
+		
+		System.out.println("Enter Persons State");
+		String state=Utility2.stringInput();
+		ad1.setState(state);
+		
+		System.out.println("Enter Persons Zip");
+		int zip=Utility2.integerInput();
+		ad1.setZip(zip);
+
+		p1.setAddressObj(ad1);
+        
+		System.out.println("Enter Persons Mobile");
+		int mobile =Utility2.longInput();		
+		p1.setPersonId(mobile);
+
+		
+       
+		persons.add(p1);
+		}
+		
+		
+
+		System.out.println("Enter Persons mobile number you want to edit:");
+		Long search = (long) Utility2.longInput();
+		int indexOfPerson = 0;
+		boolean isFoundPerson = false;
+		for (int i = 0; i < persons.size(); i++) {
+			if (search == persons.get(i).getMobile()) {
+				isFoundPerson = true;
+				indexOfPerson = i;
+				System.out.println("Person found");
+				break;
+			}
+		}
+
+		if (isFoundPerson) {
+			persons.get(indexOfPerson).getAddressObj().setCity("new panve");
+			persons.get(indexOfPerson).getAddressObj().setZip(410207);
+			persons.get(indexOfPerson).setMobile((long) 1234567890);
+			;
+			System.out.println("Edit completed");
+		} else
+			System.out.println("Person not found");
+
+		// delete person
+
+		// commenting because dont want to delete now
+
+//		System.out.println("Enter Persons mobile number you want to delete:");
+//		search = OOPsUtility.stringScanner();
+//		
+//		for (int i = 0; i < persons.size(); i++) {
+//			if (search.equals(persons.get(i).getMobile())) {
+//				isFoundPerson = true;
+//				indexOfPerson = i;
+//				System.out.println("Person found");
+//				break;
+//			}
+//		}
+//		
+//		if (isFoundPerson) {
+//			persons.remove(indexOfPerson);
+//			System.out.println("Person deleted");
+//		}else
+//			System.out.println("Person not found");
+
+		// sorting by last name
+
+		for (int i = 0; i < persons.size() - 1; i++) {
+			for (int j = 0; j < persons.size() - i - 1; j++) {
+
+				if (persons.get(j).getLastName().compareTo(persons.get(j + 1).getLastName()) > 0) {
+					Object temp = persons.get(j);
+					persons.set(j, persons.get(j + 1));
+					persons.set(j + 1, (Person) temp);
+
+				}
+			}
+		}
+		model.setPerson(persons);
+
+		// sorting by zip
+
+		for (int i = 0; i < persons.size() - 1; i++) {
+			for (int j = 0; j < persons.size() - i - 1; j++) {
+
+				if (persons.get(j).getAddressObj().getZip() > persons.get(j + 1).getAddressObj().getZip()) {
+					Object temp = persons.get(j);
+					persons.set(j, persons.get(j + 1));
+					persons.set(j + 1, (Person) temp);
+
+				}
+			}
+		}
+		model.setPerson(persons);
+
+		JsonUtil.writeMapper(path, model);
+
+	}
+
+}
+

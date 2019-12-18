@@ -1,0 +1,198 @@
+package com.bridgelabz.deckofcards;
+
+import java.util.NoSuchElementException;
+import java.util.Scanner;
+import com.bridgelabz.utility.Utility;
+
+/****************************************************************************************
+ * @author :Pramila0526 Purpose :Linkedlist Using Queue for Deck Of Cards Date
+ *         :05/12/2019
+ * 
+ ****************************************************************************************/
+class Node<T> 
+{
+	T data;
+	Node<T> link;
+	public Node<T> next;
+
+	@SuppressWarnings("unchecked")
+	// Constructors Of Node
+	public Node() {
+		link = null;
+		data = (T) " ";
+	}
+
+	@SuppressWarnings("unchecked")
+	public Node(T d, Node<?> n) {
+		data = d;
+		link = (Node<T>) n;
+	}
+
+	@SuppressWarnings("unchecked")
+	// Getters Setters
+	public void setLink(Node<?> n) {
+		link = (Node<T>) n;
+	}
+
+	public void setData(T d) {
+		data = d;
+	}
+
+	public Node<?> getLink() {
+		return link;
+	}
+
+	public T getData() {
+		return data;
+	}
+}
+
+//Linked Queue Class
+class LinkedQueue<T>
+{
+	protected static Node<?> front;
+	protected static Node<?> rear;
+	public static int size;
+
+	public LinkedQueue() 
+	{
+		front = null;
+		rear = null;
+		size = 0;
+	}
+
+	public boolean isEmpty() 
+	{
+		return front == null;
+	}
+
+	public int getSize() 
+	{
+		return size;
+	}
+
+	// Method For Inserting the Node
+	public static <T> void insert(T i) 
+	{
+		Node<T> new_node = new Node<T>(i, null);
+		if (rear == null) {
+			front = new_node;
+			rear = new_node;
+		} else {
+			rear.setLink(new_node);
+			rear = rear.getLink();
+		}
+		size++;
+	}
+
+	// Method For removing the Node
+	public String remove() 
+	{
+		if (isEmpty())
+			throw new NoSuchElementException("Underflow Exception");
+		Node<?> temp = front;
+		front = temp.getLink();
+		if (front == null)
+			rear = null;
+		size--;
+		return (String) temp.getData();
+	}
+
+	// Method to peek front element
+	public String peek() 
+	{
+		if (isEmpty())
+			throw new NoSuchElementException("Underflow Exception");
+		return (String) front.getData();
+	}
+
+	// Display Linked Queue
+	public static void display() 
+	{
+
+		if (size == 0) {
+			System.out.print("Empty");
+			return;
+		}
+		Node<?> ptr = front;
+		while (ptr != rear.getLink()) {
+
+			System.out.print(ptr.getData());
+			ptr = ptr.getLink();
+		}
+
+	}
+
+}
+
+//Main Class
+public class QueueUsingLinkedList {
+	@SuppressWarnings("static-access")
+	public static void main(String[] args) {
+		@SuppressWarnings("resource")
+		Scanner scan = new Scanner(System.in);
+
+		LinkedQueue<?> lq = new LinkedQueue<Object>();
+
+		char ch;
+		do {
+			// Operation to perform on linked Queue
+			System.out.println("====Operations of Queue====");
+			System.out.println("1. Insert");
+			System.out.println("2. Remove");
+			System.out.println("3. Peek");
+			System.out.println("4. Check empty");
+			System.out.println("5. Size");
+			System.out.println("6. Exit");
+			System.out.println();
+			System.out.println("Enter Your Choice");
+			int choice = scan.nextInt();
+			switch (choice) {
+			case 1:
+				// Insert
+				System.out.println("Enter the Element to Insert");
+				lq.insert(Utility.stringInput());
+				break;
+			case 2:
+				// Remove
+				try {
+					System.out.println("Removed Element:-" + lq.remove());
+				} catch (Exception e) {
+					System.out.println("Error**" + e.getMessage());
+				}
+				break;
+			case 3:
+				// Peek
+				try {
+					System.out.println("Peek Element is:-" + lq.peek());
+				} catch (Exception e) {
+					System.out.println("Error : " + e.getMessage());
+				}
+				break;
+			case 4:
+				// Empty Status
+				System.out.println("Empty status = " + lq.isEmpty());
+				break;
+
+			case 5:
+				// Size of Linked Queue
+				System.out.println("Size = " + lq.getSize());
+				break;
+
+			case 6:
+				// exit Code
+				System.exit(0);
+			default:
+				// Invalid Input
+				System.out.println("Invalid Choice");
+				break;
+			}
+			// display
+			lq.display();
+			// Code To Repeat the Process
+			System.out.println("\nEnter y or n if you want to continue(y for yes .. n for No)");
+			ch = scan.next().charAt(0);
+		} while (ch == 'Y' || ch == 'y');
+	}
+
+}

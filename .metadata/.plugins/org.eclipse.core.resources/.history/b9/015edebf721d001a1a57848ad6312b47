@@ -1,0 +1,59 @@
+package clinique.management;
+
+import java.util.ArrayList;
+
+public class FindPatient 
+{
+	public ArrayList<Patient> findById(ArrayList<Patient> pt,int pid)
+	{
+		ArrayList<Patient> temp=new ArrayList<Patient>();
+		for(Patient p: pt)
+		{
+			if(p.getId()==pid)
+			{
+				temp.add(p);
+			}
+		}
+		return temp;
+		
+	}
+	public ArrayList<Patient> findByName(ArrayList<Patient> pt,String name)
+	{
+		ArrayList<Patient> temp=new ArrayList<Patient>();
+		for(Patient p: pt)
+		{
+			if(p.getName()==name)
+			{
+				temp.add(p);
+			}
+		}
+		return temp;
+		
+	}
+	public ArrayList<Patient> findByPhoneNumber(ArrayList<Patient> pt,int phoneNumber)
+	{
+		ArrayList<Patient> temp=new ArrayList<Patient>();
+		for(Patient p: pt)
+		{
+			if(p.getPhoneNumber()==phoneNumber)
+			{
+				temp.add(p);
+			}
+		}
+		return temp;
+		
+	}
+	public ArrayList<Patient> findByAge(ArrayList<Patient> pt,int age)
+	{
+		ArrayList<Patient> temp=new ArrayList<Patient>();
+		for(Patient p: pt)
+		{
+			if(p.getAge()==age)
+			{
+				temp.add(p);
+			}
+		}
+		return temp;
+		
+	}
+}

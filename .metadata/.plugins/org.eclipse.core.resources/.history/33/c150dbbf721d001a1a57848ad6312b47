@@ -1,0 +1,54 @@
+package clinique.management;
+
+import java.util.Date;
+
+public class Appointment {
+Integer id;
+Date date;
+public Appointment(int id, Date date2)
+{
+	this.id=id;
+	this.date=date;
+}
+public int getId() {
+	return id;
+}
+public void setId(int id) {
+	this.id = id;
+}
+public Date getDate() {
+	return date;
+}
+public void setDate(Date date) {
+	this.date = date;
+}
+public String toString()
+{
+	return "Appointment [ID=" +id+ ", Date=" +date+ "]";
+}
+
+//generates unique id's and date
+public int hashCode()
+{
+	return this.id.hashCode()+this.date.hashCode();
+}
+
+//checks whether the given data is equal according to the id and date
+
+public boolean equals(Object object)
+{
+	if (object == null) 
+		return false;
+	if (object == this) 
+		return true;
+	if (!(object instanceof Appointment))
+		return false;
+	
+	Appointment dA = (Appointment) object;
+
+	if((this.id==dA.id) && (this.date.equals(dA.date)))
+		return true;
+	else
+		return false;
+}
+}

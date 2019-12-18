@@ -1,0 +1,59 @@
+package clinique.management;
+
+import java.util.ArrayList;
+
+public class FindDoctor
+{
+public ArrayList<Doctor> findById(ArrayList<Doctor> al,int did)
+{
+	ArrayList<Doctor> temp=new ArrayList<Doctor>();
+	for(Doctor d: al)
+	{
+		if(d.getId()==did)
+		{
+			temp.add(d);
+		}
+	}
+	return temp;
+	
+}
+public ArrayList<Doctor> findByName(ArrayList<Doctor> al,String name)
+{
+	ArrayList<Doctor> temp=new ArrayList<Doctor>();
+	for(Doctor d: al)
+	{
+		if(d.getName()==name)
+		{
+			temp.add(d);
+		}
+	}
+	return temp;
+	
+}
+public ArrayList<Doctor> findBySepcialization(ArrayList<Doctor> al,String speaciality)
+{
+	ArrayList<Doctor> temp=new ArrayList<Doctor>();
+	for(Doctor d: al)
+	{
+		if(d.getSpecialization()==speaciality)
+		{
+			temp.add(d);
+		}
+	}
+	return temp;
+	
+}
+public ArrayList<Doctor> findByAvailability(ArrayList<Doctor> al,String availability)
+{
+	ArrayList<Doctor> temp=new ArrayList<Doctor>();
+	for(Doctor d: al)
+	{
+		if(d.getAvailability()==availability)
+		{
+			temp.add(d);
+		}
+	}
+	return temp;
+	
+}
+}

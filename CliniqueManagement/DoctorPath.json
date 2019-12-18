@@ -1,0 +1,1 @@
+{"doctor":[{"doctorName":"Dr. poo","doctorId":1,"doctorSpecialization":"kl","doctorAvailability":{"inTime":7,"outTime":12,"date":"18/12/2019"},"numberOfPatients":0},{"doctorName":"Dr. ho","doctorId":2,"doctorSpecialization":"uvfi","doctorAvailability":{"inTime":8,"outTime":3,"date":"15/12/2019."},"numberOfPatients":0}]}

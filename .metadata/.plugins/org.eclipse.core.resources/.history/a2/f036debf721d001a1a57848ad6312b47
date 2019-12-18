@@ -1,0 +1,251 @@
+package clinique.management;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import com.bridgelabz.objectorientedprograms.utility.Utility;
+/**
+ * @author Pramila0526
+ * Date   :25/11/2019
+ *
+ */
+public class Clinique 
+{
+	static Date date;
+public static void main(String[] args) 
+{
+	FindDoctor fd=new FindDoctor();
+	FindPatient fp=new FindPatient();
+	
+	HashMap<Appointment,Integer> appoint=new HashMap<Appointment,Integer>();
+	
+	Doctor d=new Doctor();
+	ArrayList<Doctor> ald=new ArrayList<Doctor>();
+	
+	Patient p=new Patient();
+	ArrayList<Patient> alp=new ArrayList<Patient>();
+	
+	AddDoctor ad=new AddDoctor();
+	ArrayList<AddDoctor> ad1=new ArrayList<AddDoctor>();
+	
+	AddPatient ap=new AddPatient();
+	ArrayList<AddPatient> ap1=new ArrayList<AddPatient>();
+	
+	String path="";
+	String path2="";
+	int choice=0;
+	do
+	{
+		
+		System.out.println();
+		System.out.println("==========CLINIQUE MANAGEMENT SYSTEM==========");
+		System.out.println("1. Add Doctor");
+		System.out.println("2. Add Patient");
+		System.out.println("3. Print Doctor's Details");
+		System.out.println("4. Print Patient's Details");
+		System.out.println("5. Take Appointment");
+		System.out.println("6. Print Appointment");
+		System.out.println("7. Search Doctor by Name, Id, Specialization & Availability");
+		System.out.println("8. Search Patient by Name, Id, Phone Number & Age");
+		System.out.println("9. Exit");
+		System.out.println();
+		System.out.println("Enter Your Choice");
+		  choice=Utility.integerInput();
+		switch(choice)
+		{
+		case 1: 
+			AddDoctor.addDoctor();
+			ald.add(d);
+			break;
+			
+		case 2: 
+			
+			AddPatient.addPatient();
+			alp.add(p);
+			break;	
+			
+		case 3: 
+			System.out.println("Enter Doctor's Details");
+			System.out.println(ald);
+			break;	
+			
+		case 4: 
+			System.out.println("Enter Patient's Details");
+			System.out.println(alp);
+			break;		
+	 
+		case 5:  //case to take an appointment
+			System.out.println("Enter Doctor's ID to take an Appointment");
+			int id=Utility.integerInput();
+			ArrayList<Doctor> doctor=fd.findById(ald, id);
+			if(doctor!=null)
+			{
+				if(doctor.size()>=1)
+				{
+					System.out.println("Please Enter the Date of Appointment");
+					Date date=Utility.printDate(Utility.stringInput());
+					if(date==null) 
+					{
+						System.out.println("Date Format is not Correct");
+					}
+					else
+					{
+						Appointment newApp=new Appointment(id, date);
+						if(appoint.containsKey(newApp))
+						{
+							Integer appointment=appoint.get(newApp);
+							if(appointment<=5)
+							{
+								appointment++;
+								appoint.put(newApp,appointment);
+							}
+							else
+							{
+								System.out.println("Sorry..The Appointement List is full.."
+										           + "Please Select Another Date");
+							}
+						}
+						else
+						{
+							appoint.put(newApp,1);
+						}
+					}
+				}
+				else
+				{
+					System.out.println("Entered Id Doesn't exists");
+				}
+			}
+			else
+			{
+				System.out.println("Entered Id Doesn't exists");
+			}
+			break;
+		case 6://Print Appointment
+		
+			System.out.println("Printing All Appointments");
+			//appoint.putAll(appoint);
+			System.out.println(appoint);
+			break;
+		
+		case 7: //Search Doctor by Name, Id, Specialization & Availability
+			int choice1=0;
+			do
+			{
+				
+		    System.out.println();
+		    System.out.println("==========Search Doctor==========");
+		    System.out.println("Search Doctor by Name");
+		    System.out.println("Search Doctor by Id");
+		    System.out.println("Search Doctor by Specialization");
+		    System.out.println("Search Doctor by Availability");
+		    System.out.println("Exit");
+		    System.out.println();
+		    System.out.println("Enter Your Choice");
+		    choice1=Utility.integerInput();
+		    switch(choice1)
+		    {
+		    case 1:
+		    	System.out.println("Enter  Doctor's Name");
+		    	String name=Utility.stringInput();
+		    	ald=fd.findByName(ald, name);
+		    	System.out.println(ald);
+		    	break;
+		    	
+		    case 2:
+		    	System.out.println("Enter  Doctor's ID");
+		    	int did=Utility.integerInput();
+		    	ald=fd.findById(ald, did);
+		    	System.out.println(ald);
+		    	break;
+		    	
+		    case 3:
+		    	System.out.println("Enter the Doctor's Specialization");
+		    	String specialization=Utility.stringInput();
+		    	ald=fd.findBySepcialization(ald, specialization);
+		    	System.out.println(ald);
+		    	break;
+		    	
+		    case 4:
+		    	System.out.println("Enter the Availability");
+		    	String availability=Utility.stringInput();
+		    	ald=fd.findByAvailability(ald, availability);
+		    	System.out.println(ald);
+		    	break;
+		    
+		    case 5:
+		    	System.exit(0);
+		    	
+		    default:
+		    		System.out.println("Invalid Choice");
+		    	
+		    }
+		  }while(choice1<6);
+		case 8:
+			int choice2=0;
+			do
+			{
+				
+			    System.out.println();
+			    System.out.println("==========Search Patient==========");
+			    System.out.println("Search Patient by Name");
+			    System.out.println("Search Patient by Id");
+			    System.out.println("Search Patient by Phone Number");
+			    System.out.println("Search Patient by Age");
+			    System.out.println("Exit");
+			    System.out.println();
+			    System.out.println("Enter Your Choice");
+			    choice2=Utility.integerInput();
+			    switch(choice2)
+			    {
+			    case 1:
+			    	System.out.println("Enter  Patient's Name");
+			    	String name=Utility.stringInput();
+			    	alp=fp.findByName(alp, name);
+			    	System.out.println(alp);
+			    	break;
+			    	
+			    case 2:
+			    	System.out.println("Enter Patient's ID");
+			    	int pid=Utility.integerInput();
+			    	alp=fp.findById(alp, pid);
+			    	System.out.println(alp);
+			    	break;
+			    	
+			    case 3:
+			    	System.out.println("Enter the Patient's Phone Number");
+			    	int phoneNumber=Utility.integerInput();
+			    	alp=fp.findByPhoneNumber(alp, phoneNumber);
+			    	System.out.println(alp);
+			    	break;
+			    	
+			    case 4:
+			    	System.out.println("Enter Patient's Age");
+			    	int age=Utility.integerInput();
+			    	alp=fp.findByAge(alp, age);
+			    	System.out.println(alp);
+			    	break;
+			    
+			    case 5:
+			    	System.exit(0);
+			    	
+			    default:
+			    		System.out.println("Invalid Choice");	
+			    		break;
+			}
+				
+		
+			}while(choice2<6);	
+	  
+		case 9:
+			System.exit(0);
+		default:
+				System.out.println("Invalid Choice");
+				break;
+		}
+	}
+		while(choice<10);
+	}
+
+}
+

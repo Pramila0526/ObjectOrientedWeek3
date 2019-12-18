@@ -1,0 +1,28 @@
+package clinique.management;
+
+import com.bridgelabz.objectorientedprograms.utility.Utility;
+
+public class AddDoctor {
+	public static void addDoctor() 
+	{
+		Doctor d=new Doctor();
+	System.out.println("Enter Your Details");
+
+	System.out.println("Enter First Name");
+	d.setName(Utility.stringInput());
+	System.out.println();  //System.out.println(d.getName());
+
+	System.out.println("Enter Id");
+	d.setId(Utility.integerInput());
+	System.out.println();   //System.out.println(d.getId());
+
+	System.out.println("Enter Specialization");
+	d.setSpecialization(Utility.stringInput());
+	System.out.println();   //System.out.println(d.getSpecialization());
+
+	System.out.println("Enter Availability");
+	d.setAvailability(Utility.stringInput());
+	System.out.println();    //System.out.println(d.getAvailability());
+
+	}
+}

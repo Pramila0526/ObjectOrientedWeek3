@@ -1,0 +1,176 @@
+package com.bridgelabz.cliniquemanagement.controller;
+
+
+
+import java.io.IOException;
+import java.util.Scanner;
+
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
+
+import com.bridgelabz.cliniquemanagement.model.Doctor;
+import com.bridgelabz.cliniquemanagement.model.Patient;
+import com.bridgelabz.cliniquemanagement.service.CliniqueDoctor;
+import com.bridgelabz.cliniquemanagement.util.CliniqueUtility;
+
+
+public class Clinique {
+
+	public static void main(String[] args)
+			throws JsonParseException, JsonMappingException, IOException, InterruptedException {
+
+		
+
+		CliniqueDoctor service = new CliniqueDoctor();
+
+		// reading json
+		service.readJson();
+
+		// creating Options list
+		boolean exit = false;
+
+		while (!exit) {
+			System.out.println("\nSelect Your choice from the Given Options\n");
+			System.out.println("1) Add New Doctor");
+			System.out.println("2) Search Docotor By Id");
+			System.out.println("3) Search Doctor By Name");
+			System.out.println("4) Search Doctor By Specialization");
+			System.out.println("5) Seach Doctor By Availability");
+			System.out.println("6) Add a new Patient");
+			System.out.println("7) Search Patient By Id");
+			System.out.println("8) Search Patient By Name");
+			System.out.println("9) Search Patient By Number");
+			System.out.println("10) Add Appointment ");
+			System.out.println("11) Save");
+			System.out.println("12) Show the Updated Details");
+			System.out.println("13) See Popular Doctor");
+			System.out.println("14) Exit");
+			
+	
+			switch (CliniqueUtility.integerInput()) {
+			case 1:
+				// add doctor
+				
+				System.out.println("\n=========Add doctor========\n");
+				Doctor doctor = service.getDoctor();
+				service.addDoctor(doctor);
+				break;
+			
+			case 2:
+				
+				System.out.println("\n==========Search doctor by Id===========\n");
+				
+
+				service.searchDoctorById();
+
+				
+				break;
+			case 3:
+				// search doctor by name
+				
+				System.out.println("\n==========Search doctor by Name==========\n");
+				
+
+				service.searchDoctorByName();
+			
+				break;
+			case 4:
+				// search doctor by specialization
+				
+				
+				System.out.println("\n==========Search doctor by Specialization==========\n");
+				String drname = service.getDoctorName();
+				service.searchDoctorBySpecialization(drname);
+
+				
+				break;
+			case 5:
+				// search doctor by availability
+				
+				System.out.println("\n==========Search doctor by Availability==========\n");
+
+				System.out.println("Enter doctor date: ");
+				var str = scanner.next();
+				System.out.println("Enter time from");
+				int time = scanner.nextInt();
+
+				service.searchDoctorByAvailability(str, time);
+
+				
+				break;
+			case 6:
+				// add patient
+				
+				System.out.println("\n==========Add a New Patient==========\n");
+
+				Patient patient = service.getPatient();
+
+				service.addPatient(patient);
+
+				
+				break;
+			case 7:
+				// search patient by id
+				
+				System.out.println("\n==========Search Ptient by Id==========\n");
+
+				System.out.println("Instruction->Patient id starts from 1000 range");
+				System.out.println("Enter patient id to search: ");
+				var num = scanner.nextInt();
+
+				service.searchPatientById(num);
+
+				break;
+			case 8:
+				// search patient by name
+				System.out.println("\n==========Search Ptient by Name==========\n");
+				service.searchPatientByName();
+
+				
+				break;
+			case 9:
+				// search patient by mobile
+				System.out.println("\n==========Search Ptient by Mobile Number==========\n");
+
+				service.searchPatientByMobile();
+
+				
+				break;
+			case 10:
+				// add appointment
+				System.out.println("\n==========Add Appintment==========\n");
+				service.addAppointment();
+
+				break;
+			case 11:
+				// save all objects into json
+				System.out.println("\n==========Save==========\n");
+				// saving doctor
+
+				service.save();
+
+				break;
+
+			
+
+			case 12:
+				// show records
+				service.showAllRecords();
+				break;
+			case 13:
+				service.showPopularDoctor();
+				break;
+			case 14:
+				// search patient by id
+				exit = true;
+				break;
+			default:
+				System.out.println("***Please select valid option***");
+			}
+		}
+
+		
+
+	}
+
+}

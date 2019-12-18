@@ -1,0 +1,5 @@
+package com.bridgelabz.cliniquemanagement.controller;
+
+public class Clinique {
+
+}

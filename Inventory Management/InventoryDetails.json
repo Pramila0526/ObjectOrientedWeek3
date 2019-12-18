@@ -1,0 +1,39 @@
+{
+  "total": 170,
+  "rice": [
+    {
+      "nameOfRice": "basmati",
+      "pricePerKgForRice": 60,
+      "weightForRice": 7,
+      "totalPriceOfWeightForRice": 420
+    },
+    {
+      "nameOfRice": "jyhgiki",
+      "pricePerKgForRice": 567,
+      "weightForRice": 34,
+      "totalPriceOfWeightForRice": 19278
+    }
+  ],
+  "wheat": [
+    {
+      "nameOfWheat": "chakki_fresh",
+      "pricePerKgForWheat": 45,
+      "weightForWheat": 5,
+      "totalPriceOfWeightForWheat": 225
+    }
+  ],
+  "pulses": [
+    {
+      "nameOfPulses": "greens",
+      "pricePerKgForPulses": 65,
+      "weightForPulses": 3,
+      "totalPriceOfWeightForPulses": 195
+    },
+    {
+      "nameOfPulses": "hfgl",
+      "pricePerKgForPulses": 456,
+      "weightForPulses": 34,
+      "totalPriceOfWeightForPulses": 15504
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+   "user": [
+
+      {
+         "id": "01",
+         "userName": "Pramila",
+         "Address": "Kabir A-15",
+        
+      },
+
+      {
+         "id": "02",
+         "userName": "Supriya",
+         "Address": "Vasundhara A-12",
+      }
+
+   ]
+}

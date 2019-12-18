@@ -1,0 +1,37 @@
+{
+	"customerShares": [
+		{
+			"customerSymbol": 101,
+			"customerName": "Pramila",
+			"customerShares": 90,
+			"customerBalance": 560000
+		},
+		{
+			"customerSymbol": 102,
+			"customerName": "Supriya",
+			"customerShares": 56,
+			"customerBalance": 990000
+		},
+		{
+			"customerSymbol": 103,
+			"customerName": "Aishwarya",
+			"customerShares": 96,
+			"customerBalance": 111000
+		},
+		{
+			"customerSymbol": 104,
+			"customerName": "Surbhi",
+			"customerShares": 90,
+			"customerBalance": 865000
+		},
+		{
+			"customerSymbol": 5,
+			"customerName": "Priyanka",
+			"customerShares": 59,
+			"customerBalance": 105020
+		}
+	]
+}
+  
+  
+
